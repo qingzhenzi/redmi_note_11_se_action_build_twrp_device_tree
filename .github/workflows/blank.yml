@@ -16,6 +16,8 @@ jobs:
   generate-device-tree:
     if: github.event.repository.owner.id == github.event.sender.id
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     
     steps:
     - name: Checkout repository
@@ -54,7 +56,7 @@ jobs:
         zip -r ../DeviceTree_${{ github.run_number }}.zip .
         cd ..
         
-    - name: Create release with device tree
+    - name: Create  with device tree
       uses: softprops/action-gh-release@v1
       with:
         files: DeviceTree_${{ github.run_number }}.zip
